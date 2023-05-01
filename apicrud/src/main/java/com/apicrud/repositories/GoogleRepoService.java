@@ -13,12 +13,12 @@ public class GoogleRepoService {
 	
 	@Autowired
 	GoogleApiRepository googleRepo;
+
+
 	
 	public void updateApi(GoogleApi obj, int id) {
 		// TODO Auto-generated method stub
-		
-		
-		
+
 		List<GoogleApi> list = (List<GoogleApi>) googleRepo.findAll();
 		
 		for(int i=0;i<list.size();i++) {
@@ -32,8 +32,20 @@ public class GoogleRepoService {
 			}
 		}
 		
-		
-		
 	}
+
+//	public void deleteById(int id){
+//
+//		for(int i=0;i<list.size();i++) {
+//
+//			if(list.get(i).getId()==id) {
+//
+//				list.remove(i);
+//				googleRepo.saveAll(list);
+//				break;
+//			}
+//		}
+//
+//	}
 
 }

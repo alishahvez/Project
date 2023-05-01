@@ -1,5 +1,6 @@
 package com.apicrud.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,16 @@ public class GoogleApiController {
 	@ResponseBody
 	@RequestMapping(value="/new", method = RequestMethod.POST)
 	public String createGoogleApi(@RequestBody GoogleApi gobj) {
-		
+
+		GoogleApi g1 = new GoogleApi(1,"www.google.com");
+		GoogleApi g2 = new GoogleApi(2,"www.google.com");
+		GoogleApi g3 = new GoogleApi(3,"www.google.com");
+		List<GoogleApi> list = new ArrayList<>();
+		list.add(g1);
+		list.add(g2);
+		list.add(g3);
+
+		googleRepo.saveAll(list);
 		googleRepo.save(gobj);
 		return "success";
 	}
@@ -72,6 +82,26 @@ public class GoogleApiController {
                  googleSer.updateApi(obj, id);
                  return obj;
 		
+	}
+
+	//Delete Object by ID - DELETE Mapping
+
+	@ResponseBody
+	@RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
+	public String deleteObject(@PathVariable int id){
+
+		googleRepo.deleteById(id);
+		return "success";
+	}
+
+	//Delete All Objects - DELETE Mapping
+
+	@ResponseBody
+	@RequestMapping(value = "/delete")
+	public String deleteAll(){
+
+		googleRepo.deleteAll();
+		return "success";
 	}
 
 }
